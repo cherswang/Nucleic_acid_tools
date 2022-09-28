@@ -4,7 +4,8 @@
 			<view @click="checkHesuan" class="checkCard">查看核酸</view>
 			<view @click="makeAlphaBG" class="checkCard">RemoveBG制作Alpha照</view>
 			<view @click="makeZhengjianzhao" class="checkCard">aliyun制作证件照</view>
-			<view @click="watermark" class="checkCard">制作水印</view>
+			<view @click="watermark" class="checkCard">制作日期时间水印</view>
+			<view @click="bgcompose" class="checkCard">背景合成</view>
 		</view>
 	</view>
 </template>
@@ -51,6 +52,12 @@
 					url:'/pages/watermark/watermark'
 				})
 			},
+			bgcompose(){
+				console.log("bgcompose");
+				uni.navigateTo({
+					url:'/pages/bgcompose/bgcompose'
+				})
+			}
 		}
 	}
 </script>

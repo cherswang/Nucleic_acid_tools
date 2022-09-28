@@ -39,7 +39,7 @@
             "path" : "pages/watermark/watermark",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "制作日期时间水印",
                 "enablePullDownRefresh": false
             }
             
@@ -48,7 +48,16 @@
             "path" : "pages/alphabg/alphabg",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "RemoveBG制作Alpha照",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/bgcompose/bgcompose",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "背景合成",
                 "enablePullDownRefresh": false
             }
             

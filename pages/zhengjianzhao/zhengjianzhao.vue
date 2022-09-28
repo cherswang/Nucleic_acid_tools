@@ -9,6 +9,12 @@
 				<picker v-show="specChoosed" @change="bindcolorChange" :range="colors[specindex]" mode="selector"class="">
 					<view class="item-set-title">选择颜色</view>
 				</picker>
+				<!-- <view :style="[{background-color: ${`color`}},{width:40px},{height:40px}]">
+					
+				</view> -->
+				<!-- <view :style="{background: `${color}`}">
+					<span style="width: 40px;height: 40px;display: block;border: 1px double #089;"></span>
+				</view> -->
 			</view>
 			<view class="item-show">
 				<view class="item-show-row"><span class="item-show-row-title">尺寸:</span>{{spec}}</view>
