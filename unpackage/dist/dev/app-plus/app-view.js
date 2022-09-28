@@ -1615,7 +1615,7 @@ var render = function() {
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
       _c("uni-view", { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } }, [
-        _vm._v("尺寸选择器")
+        _vm._v("1、尺寸选择")
       ]),
       _c(
         "uni-view",
@@ -1623,138 +1623,118 @@ var render = function() {
         [
           _c(
             "uni-view",
-            { attrs: { _i: 3 } },
+            { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
             [
               _c(
-                "uni-view",
-                { attrs: { _i: 4 } },
+                "v-uni-picker",
+                {
+                  attrs: {
+                    range: _vm._$g(4, "a-range"),
+                    mode: "selector",
+                    _i: 4
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
                 [
                   _c(
                     "uni-view",
                     { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
-                    [
-                      _c(
-                        "v-uni-picker",
-                        {
-                          staticClass: _vm._$g(6, "sc"),
-                          attrs: {
-                            range: _vm._$g(6, "a-range"),
-                            mode: "selector",
-                            _i: 6
-                          },
-                          on: {
-                            change: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "uni-view",
-                            { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
-                            [_vm._v("选择规格")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-picker",
-                        {
-                          staticClass: _vm._$g(8, "sc"),
-                          attrs: {
-                            range: _vm._$g(8, "a-range"),
-                            mode: "selector",
-                            _i: 8
-                          },
-                          on: {
-                            change: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "uni-view",
-                            { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-                            [_vm._v("选择颜色")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
+                    [_vm._v("选择规格")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "v-uni-picker",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm._$g(6, "v-show"),
+                      expression: "_$g(6,'v-show')"
+                    }
+                  ],
+                  attrs: {
+                    range: _vm._$g(6, "a-range"),
+                    mode: "selector",
+                    _i: 6
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
+                [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
-                    [
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass: _vm._$g(12, "sc"),
-                              attrs: { _i: 12 }
-                            },
-                            [_vm._v("尺寸:")]
-                          ),
-                          _vm._v(_vm._$g(11, "t1-0"))
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass: _vm._$g(14, "sc"),
-                              attrs: { _i: 14 }
-                            },
-                            [_vm._v("规格:")]
-                          ),
-                          _vm._v(_vm._$g(13, "t1-0"))
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass: _vm._$g(16, "sc"),
-                              attrs: { _i: 16 }
-                            },
-                            [_vm._v("规格ID:")]
-                          ),
-                          _vm._v(_vm._$g(15, "t1-0"))
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
-                        [
-                          _c(
-                            "span",
-                            {
-                              staticClass: _vm._$g(18, "sc"),
-                              attrs: { _i: 18 }
-                            },
-                            [_vm._v("颜色:")]
-                          ),
-                          _vm._v(_vm._$g(17, "t1-0"))
-                        ],
-                        1
-                      )
-                    ],
-                    1
+                    { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                    [_vm._v("选择颜色")]
                   )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _c(
+            "uni-view",
+            { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
+            [
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
+                [
+                  _c(
+                    "span",
+                    { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
+                    [_vm._v("尺寸:")]
+                  ),
+                  _vm._v(_vm._$g(9, "t1-0"))
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+                [
+                  _c(
+                    "span",
+                    { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
+                    [_vm._v("规格:")]
+                  ),
+                  _vm._v(_vm._$g(11, "t1-0"))
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+                [
+                  _c(
+                    "span",
+                    { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                    [_vm._v("规格ID:")]
+                  ),
+                  _vm._v(_vm._$g(13, "t1-0"))
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
+                [
+                  _c(
+                    "span",
+                    { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+                    [_vm._v("颜色:")]
+                  ),
+                  _vm._v(_vm._$g(15, "t1-0"))
                 ],
                 1
               )
@@ -1764,6 +1744,9 @@ var render = function() {
         ],
         1
       ),
+      _c("uni-view", { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } }, [
+        _vm._v("2、选择要处理的照片")
+      ]),
       _c(
         "uni-view",
         {
@@ -1773,13 +1756,14 @@ var render = function() {
             display: "flex",
             "align-items": "center"
           },
-          attrs: { _i: 19 }
+          attrs: { _i: 18 }
         },
         [
           _c(
             "v-uni-button",
             {
-              attrs: { type: "primary", _i: 20 },
+              staticStyle: { "background-color": "cadetblue" },
+              attrs: { type: "primary", _i: 19 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
@@ -1799,13 +1783,15 @@ var render = function() {
             width: "90%",
             margin: "10px 5%",
             display: "flex",
-            "align-items": "center"
+            "align-items": "center",
+            border: "1px dotted cadetblue",
+            "border-radius": "2px"
           },
-          attrs: { _i: 21 }
+          attrs: { _i: 20 }
         },
         [
           _c("v-uni-image", {
-            attrs: { mode: "widthFix", src: _vm._$g(22, "a-src"), _i: 22 },
+            attrs: { mode: "widthFix", src: _vm._$g(21, "a-src"), _i: 21 },
             on: {
               click: function($event) {
                 return _vm.$handleViewEvent($event)
@@ -1815,6 +1801,9 @@ var render = function() {
         ],
         1
       ),
+      _c("uni-view", { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } }, [
+        _vm._v("3、生成处理后的照片")
+      ]),
       _c(
         "uni-view",
         {
@@ -1830,6 +1819,7 @@ var render = function() {
           _c(
             "v-uni-button",
             {
+              staticStyle: { "background-color": "cadetblue" },
               attrs: { type: "primary", _i: 24 },
               on: {
                 click: function($event) {
@@ -1842,7 +1832,7 @@ var render = function() {
         ],
         1
       ),
-      _vm._v("生成的证件照："),
+      _vm._v("生成的证件照(生成后将自动保存)："),
       _c(
         "uni-view",
         {
@@ -1850,7 +1840,9 @@ var render = function() {
             width: "90%",
             margin: "10px 5%",
             display: "flex",
-            "align-items": "center"
+            "align-items": "center",
+            border: "1px dotted cadetblue",
+            "border-radius": "2px"
           },
           attrs: { _i: 25 }
         },
@@ -1867,11 +1859,16 @@ var render = function() {
         1
       ),
       _c("uni-view", { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } }, [
-        _vm._v("处理后图片的尺寸:" + _vm._$g(27, "t0-0"))
+        _vm._v("4、处理后的照片信息")
       ]),
-      _c("uni-view", { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } }, [
-        _vm._v("处理后图片的地址:" + _vm._$g(28, "t0-0"))
-      ])
+      _c("uni-view", { attrs: { _i: 28 } }, [
+        _vm._v("处理后图片的尺寸:" + _vm._$g(28, "t0-0"))
+      ]),
+      _c(
+        "uni-view",
+        { staticStyle: { "word-wrap": "break-word" }, attrs: { _i: 29 } },
+        [_vm._v("处理后图片的地址:" + _vm._$g(29, "t0-0"))]
+      )
     ],
     1
   )
@@ -1964,7 +1961,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.container{\n\tpadding: 10px;\n}\n.picker-view {\n\tbackground-color: cadetblue;\n\tmargin: 5px;\n\theight: 30px;\n}\n.item-set {\n\t/* height: 0px; */\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tjustify-content: space-around;\n\ttext-align: center;\n}\n.item-show {\n\t/* height: 0px; */\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: flex-start;\n\tjustify-content: space-around;\n\ttext-align: left;\n}\n.item-show-row{\n\tmargin: 10px 2%;\n\twidth: 96%;\n\tborder-bottom: 0.5px solid lightblue;\n}\n.item-show-row-title{\n\tmargin-right: 20px;\n\tfont-weight: bold;\n}\n", ""]);
+exports.push([module.i, "\n.container {\n\tpadding: 10px;\n}\n.item-title{\n\tfont-size: 20px;\n\tfont-weight: bold;\n\tmargin-top: 15px;\n}\n.item-set {\n\t/* height: 0px; */\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items: center;\n\tjustify-content: space-around;\n\ttext-align: center;\n}\n.picker-view {\n\tbackground-color: cadetblue;\n\tmargin: 5px;\n\theight: 30px;\n}\n.item-set-title {\n\theight: 45px;\n\twidth: 100px;\n\tline-height: 45px;\n\tbackground-color: cadetblue;\n\tfont-size: 18px;\n\tcolor: white;\n\tborder-radius: 5px;\n\ttext-align: center;\n\tmargin: 5px;\n}\n.item-show {\n\t/* height: 0px; */\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: flex-start;\n\tjustify-content: space-around;\n\ttext-align: left;\n}\n.item-show-row {\n\tmargin: 10px 2%;\n\twidth: 96%;\n\tborder-bottom: 0.5px solid lightblue;\n}\n.item-show-row-title {\n\tmargin-right: 20px;\n\tfont-weight: bold;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

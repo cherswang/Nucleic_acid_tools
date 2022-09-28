@@ -30,7 +30,7 @@
             "path" : "pages/zhengjianzhao/zhengjianzhao",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "",
+                "navigationBarTitleText": "生成证件照",
                 "enablePullDownRefresh": false
             }
             

@@ -1,59 +1,43 @@
 <template>
 	<view class="container">
-		<view class="uni-title uni-common-pl">尺寸选择器</view>
+		<view class="item-title">1、尺寸选择</view>
 		<view class="">
-			<view class="">
-				<view class="">
-					<view class="item-set">
-						<picker @change="bindtitleChange" :range="titles" mode = "selector" class="picker-view">
-							<!-- <view class="uni-input">选择规格：{{titles[index]}}</view> -->
-							<view class="item-set-title">选择规格</view>
-						</picker>
-						<picker @change="bindcolorChange" :range="colors[specindex]" mode = "selector" class="picker-view">
-							<!-- <view class="uni-input">选择颜色：{{colors[specindex][index]}}</view> -->
-							<view class="item-set-title">选择颜色</view>
-						</picker>
-					</view>
-					
-					<!-- <view class="item">
-						<picker @change="bindspecChange" :range="ids" mode = "selector">
-							<view class="uni-input">{{ids[idindex]}}</view>
-						</picker>
-					</view>
-					<view class="item">
-						<picker @change="bindspecChange" :range="specs" mode = "selector">
-							<view class="uni-input">{{specs[specindex]}}</view>
-						</picker>
-					</view> -->
-					
-					<view class="item-show">
-						<view class="item-show-row"><span class="item-show-row-title">尺寸:</span>{{spec}}</view>
-						<view class="item-show-row"><span class="item-show-row-title">规格:</span>{{title}}</view>
-						<view class="item-show-row"><span class="item-show-row-title">规格ID:</span>{{id}}</view>
-						<view class="item-show-row"><span class="item-show-row-title">颜色:</span>{{color}}</view>
-					</view>
-				</view>
+			<view class="item-set">
+				<picker @change="bindtitleChange" :range="titles" mode="selector" class="">
+					<view class="item-set-title">选择规格</view>
+				</picker>
+				<picker v-show="specChoosed" @change="bindcolorChange" :range="colors[specindex]" mode="selector"class="">
+					<view class="item-set-title">选择颜色</view>
+				</picker>
+			</view>
+			<view class="item-show">
+				<view class="item-show-row"><span class="item-show-row-title">尺寸:</span>{{spec}}</view>
+				<view class="item-show-row"><span class="item-show-row-title">规格:</span>{{title}}</view>
+				<view class="item-show-row"><span class="item-show-row-title">规格ID:</span>{{id}}</view>
+				<view class="item-show-row"><span class="item-show-row-title">颜色:</span>{{color}}</view>
 			</view>
 		</view>
+		<view class="item-title">2、选择要处理的照片</view>
 		<view style="width: 90%;margin:10px 5%;display: flex;align-items: center;">
-			<button type="primary" @tap="takePhoto">选取照片</button>
-			<!-- <button type="primary" @tap="processPhoto">处理照片</button> -->
+			<button type="primary" @tap="takePhoto" style="background-color: cadetblue;">选取照片</button>
 		</view>
 		源照片：
-		<view style="width: 90%;margin:10px 5%;display: flex;align-items: center;">
-			<image mode="widthFix" :src="src" @click="preview"></image>
+		<view style="width: 90%;margin:10px 5%;display: flex;align-items: center;border: 1px dotted cadetblue;border-radius: 2px;">
+			<!-- 宽度不变，高度自动变化，保持原图宽高比不变 -->
+			<image mode="widthFix" :src="src" @click="previewBefore"></image>
 		</view>
-		
+		<view class="item-title ">3、生成处理后的照片</view>
 		<view style="width: 90%;margin:10px 5%;display: flex;align-items: center;">
-			<!-- <button type="primary" @tap="takePhoto">选取照片</button> -->
-			<button type="primary" @tap="processPhoto">处理照片</button>
+			<button type="primary" @tap="processPhoto" style="background-color: cadetblue;">处理照片</button>
 		</view>
-		生成的证件照：
-		<view style="width: 90%;margin:10px 5%;display: flex;align-items: center;">
-			<image mode="widthFix" :src="srcResult" @click="preview1"></image>
+		生成的证件照(生成后将自动保存)：
+		<view style="width: 90%;margin:10px 5%;display: flex;align-items: center;border: 1px dotted cadetblue;border-radius: 2px;">
+			<!-- 宽度不变，高度自动变化，保持原图宽高比不变 -->
+			<image mode="widthFix" :src="srcResult" @click="previewAfter"></image>
 		</view>
-		<view class="uni-title">处理后图片的尺寸:{{resultSize}}</view>
-		<view class="uni-title">处理后图片的地址:{{resultUrl}}</view>
+		<view class="item-title">4、处理后的照片信息</view>
+		<view class="">处理后图片的尺寸:{{resultSize}}</view>
+		<view style="word-wrap: break-word;">处理后图片的地址:{{resultUrl}}</view>
 	</view>
 </template>
 
@@ -62,54 +46,55 @@
 		pathToBase64,
 		base64ToPath
 	} from "../../common/image-tools/index.js"
-	
+
 	const idphotoSpecsData = require('@/common/data/idphoto_specs.json')
 	export default {
 		data() {
 			return {
 				src: '',
 				srcResult: '',
-				AppCode:"84d73f2a5bf84a0490e3ed2047b5cc12", //你的appcode
-				
+				AppCode: "84d73f2a5bf84a0490e3ed2047b5cc12", //你的appcode
+
 				localData: [],
-				
-				titles:[],
-				title:"",
-				titleindex:0,
-				
-				specs:[],
-				spec:"",
-				specindex:0,
-				
-				ids:[],
-				id:"",
-				idindex:0,
-				
-				colors:[],
-				color:"",
-				colorindex:0,
-				
+
+				titles: [],
+				title: "",
+				titleindex: 0,
+
+				specs: [],
+				spec: "",
+				specindex: 0,
+
+				ids: [],
+				id: "",
+				idindex: 0,
+
+				colors: [],
+				color: "",
+				colorindex: 0,
+
 				index: 0,
-				localbase64str:"",
-				
-				resultSize:"",
-				resultUrl:"",
+				localbase64str: "",
+
+				resultSize: "",
+				resultUrl: "",
+				specChoosed: false,
 			}
 		},
 		onLoad() {
 			this.localData = idphotoSpecsData;
 			this.initData();
-			console.log(this.localData,Array.isArray(this.localData));
+			console.log(this.localData, Array.isArray(this.localData));
 		},
 		methods: {
-			initData(){
-				for(let i=0;i<idphotoSpecsData.length;i++){
+			initData() {
+				for (let i = 0; i < idphotoSpecsData.length; i++) {
 					this.titles.push(idphotoSpecsData[i].title);
 					this.specs.push(idphotoSpecsData[i].spec);
 					this.ids.push(idphotoSpecsData[i].id);
 					this.colors.push(idphotoSpecsData[i].color);
 				}
-				console.log(this.titles,this.specs,this.colors);
+				console.log(this.titles, this.specs, this.colors);
 			},
 			bindtitleChange: function(e) {
 				const val = e.detail.value
@@ -120,13 +105,14 @@
 				this.idindex = val;
 				this.id = this.ids[val];
 				this.color = this.colors[this.specindex][0];
-				console.log(this.title,this.spec);
+				console.log(this.title, this.spec);
+				this.specChoosed = true;
 			},
 			bindspecChange: function(e) {
 				const val = e.detail.value
 				this.specindex = val;
 				this.spec = this.specs[val];
-				
+
 				console.log(this.spec);
 			},
 			bindcolorChange: function(e) {
@@ -135,13 +121,13 @@
 				this.color = this.colors[this.specindex][val];
 				console.log(this.color);
 			},
-			preview() {
+			previewBefore() {
 				uni.previewImage({
 					urls: [this.src],
 					current: 0
 				})
 			},
-			preview1() {
+			previewAfter() {
 				uni.previewImage({
 					urls: [this.srcResult],
 					current: 0
@@ -149,6 +135,14 @@
 			},
 			takePhoto() {
 				var that = this;
+				if(that.specChoosed == false){
+					uni.showToast({
+						icon:"none",
+						title:"请您先选择规格",
+						duration:3000
+					})
+					return
+				}
 				uni.chooseImage({
 					count: 1,
 					success(res) {
@@ -167,12 +161,12 @@
 				});
 			},
 			processPhoto() {
-				console.log(this.spec,this.color);
-				if(this.spec == "" ||  this.color == "" || this.localbase64str ==""){
+				console.log(this.spec, this.color);
+				if (this.spec == "" || this.color == "" || this.localbase64str == "") {
 					uni.showToast({
-						icon:"none",
-						title:"请先选择要处理的照片，并配置好参数",
-						duration:3000
+						icon: "none",
+						title: "请先选择要处理的照片，并配置好参数",
+						duration: 3000
 					})
 					return;
 				}
@@ -200,8 +194,8 @@
 					success: (res) => {
 						console.log(res.data);
 						uni.showToast({
-							icon:"none",
-							title:res.data.errmsg,
+							icon: "none",
+							title: res.data.errmsg,
 						})
 						this.text = 'request success';
 						this.srcResult = res.data.data.result;
@@ -210,11 +204,11 @@
 						// console.log(this.srcResult);
 						this.savePhoto(this.srcResult);
 					},
-					fail:(error) =>{
+					fail: (error) => {
 						console.log(error.data.errmsg);
 						uni.showToast({
-							icon:"none",
-							title:error.data.errmsg,
+							icon: "none",
+							title: error.data.errmsg,
 						})
 						return;
 					}
@@ -227,6 +221,7 @@
 					filePath: path,
 					success: () => {
 						uni.showToast({
+							icon: "none",
 							title: '已自动保存至相册',
 							duration: 2000
 						});
@@ -238,13 +233,13 @@
 </script>
 
 <style>
-	.container{
+	.container {
 		padding: 10px;
 	}
-	.picker-view {
-		background-color: cadetblue;
-		margin: 5px;
-		height: 30px;
+	.item-title{
+		font-size: 20px;
+		font-weight: bold;
+		margin-top: 15px;
 	}
 	.item-set {
 		/* height: 0px; */
@@ -254,6 +249,25 @@
 		justify-content: space-around;
 		text-align: center;
 	}
+
+	.picker-view {
+		background-color: cadetblue;
+		margin: 5px;
+		height: 30px;
+	}
+
+	.item-set-title {
+		height: 45px;
+		width: 100px;
+		line-height: 45px;
+		background-color: cadetblue;
+		font-size: 18px;
+		color: white;
+		border-radius: 5px;
+		text-align: center;
+		margin: 5px;
+	}
+
 	.item-show {
 		/* height: 0px; */
 		display: flex;
@@ -262,12 +276,14 @@
 		justify-content: space-around;
 		text-align: left;
 	}
-	.item-show-row{
+
+	.item-show-row {
 		margin: 10px 2%;
 		width: 96%;
 		border-bottom: 0.5px solid lightblue;
 	}
-	.item-show-row-title{
+
+	.item-show-row-title {
 		margin-right: 20px;
 		font-weight: bold;
 	}
