@@ -2070,7 +2070,19 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("选取照片")]
+            [_vm._v("选取背景图片")]
+          ),
+          _c(
+            "v-uni-button",
+            {
+              attrs: { type: "primary", _i: 3 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
+            [_vm._v("选取前景图片")]
           )
         ],
         1
@@ -2079,16 +2091,16 @@ var render = function() {
         "uni-view",
         {
           staticStyle: { position: "absolute", top: "-999999px" },
-          attrs: { _i: 3 }
+          attrs: { _i: 4 }
         },
         [
           _c(
             "uni-view",
-            { attrs: { _i: 4 } },
+            { attrs: { _i: 5 } },
             [
               _c("v-uni-canvas", {
-                style: _vm._$g(5, "s"),
-                attrs: { "canvas-id": "firstCanvas", _i: 5 }
+                style: _vm._$g(6, "s"),
+                attrs: { "canvas-id": "firstCanvas", _i: 6 }
               })
             ],
             1
@@ -2105,11 +2117,11 @@ var render = function() {
             display: "flex",
             "align-items": "center"
           },
-          attrs: { _i: 6 }
+          attrs: { _i: 7 }
         },
         [
           _c("v-uni-image", {
-            attrs: { mode: "widthFix", src: _vm._$g(7, "a-src"), _i: 7 },
+            attrs: { mode: "widthFix", src: _vm._$g(8, "a-src"), _i: 8 },
             on: {
               click: function($event) {
                 return _vm.$handleViewEvent($event)
