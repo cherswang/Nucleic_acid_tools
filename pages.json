@@ -1,0 +1,64 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "我的首页",
+				"enablePullDownRefresh": false
+			}
+		}
+	    ,{
+            "path" : "pages/nucleicAcid/nucleicAcid",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "河南省疫情防控场所码",
+                "app-plus": {
+                	"titleNView": {
+                		// "buttons": [
+                		// 	{
+                		// 		"color": "#000",
+                		// 		"type": "back",
+                		// 		"float": "left"
+                		// 	}
+                		// ]
+                	}
+                }
+            }
+            
+        }
+        ,{
+            "path" : "pages/zhengjianzhao/zhengjianzhao",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/watermark/watermark",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/alphabg/alphabg",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}
