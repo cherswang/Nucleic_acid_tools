@@ -1,7 +1,8 @@
 <template>
 	<view class="content">
 		<view class="container">
-			<view @click="checkHesuan" class="checkCard">查看核酸</view>
+			<view @click="checkHesuan" class="checkCard">查看核酸-新</view>
+			<view @click="checkHesuan2" class="checkCard">查看核酸</view>
 			<view @click="makeAlphaBG" class="checkCard">RemoveBG制作Alpha照</view>
 			<view @click="makeZhengjianzhao" class="checkCard">aliyun制作证件照</view>
 			<view @click="watermark" class="checkCard">制作日期时间水印</view>
@@ -22,6 +23,11 @@
 		},
 		methods: {
 			checkHesuan(){
+				uni.navigateTo({
+					url:'/pages/nucleicAcid2/nucleicAcid2'
+				})
+			},
+			checkHesuan2(){
 				// 只允许通过相机扫码
 				// uni.scanCode({
 				// 	onlyFromCamera: true,

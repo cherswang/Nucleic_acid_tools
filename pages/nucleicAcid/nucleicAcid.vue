@@ -27,7 +27,7 @@
 					<div style="width: 40vw;height: 26vw;background-color: #7de079;color: #fff;">
 						<div style="text-align: center;margin-top: 5px;">核酸检测结果</div>
 						<div style="display: flex;flex-direction: row;align-items: center;font-weight: bold;">
-							<div style="font-size: 50px;margin:0 5px;">48</div>
+							<div style="font-size: 50px;margin:0 5px;">24</div>
 							<div style="display: flex;flex-direction: column;align-items: center;">
 								<div style="font-size: 15px;">小时内</div>
 								<div style="font-size: 20px;">阴性</div>
@@ -59,14 +59,23 @@
 							style="display: flex;flex-direction: column;align-items: center;justify-content: center;font-weight: bold;">
 							<div style="color: #3DB6F5;margin-top: 15px;">距到期还剩</div>
 							<div style="color: #3DB6F5;padding: 0 5px;margin-top: 15px;"><span
-									style="font-size: 25px;">32</span><span
+									style="font-size: 25px;">12</span><span
 									style="font-size: 12px;">小时&nbsp;</span><span
 									style="font-size: 25px;">36</span><span style="font-size: 12px;">分</span></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="checkCard">查看行程卡</div>
+			<div class="checkCard" @tap="testDownload()">查看行程卡</div>
+		</div>
+		<div v-if="downloadShow == true" style="position: fixed;left:25%;top: 35%;width: 50%;height:30%;background-color:#6f7375;display: flex;align-items: center;flex-direction: column;justify-content: center;border-radius: 20px;opacity: 95%;">
+			<span style="color: #fff;">升级中，请稍等</span>
+			<br>
+			<!-- <div class="g-progress"></div> -->
+			<canvas style="width: 70px;height: 70px;" canvas-id="runCanvas"></canvas>
+			<div  style="color: #fff;">
+				当前下载进度为：{{currentProgress}}%
+			</div>
 		</div>
 	</view>
 </template>
@@ -78,6 +87,8 @@
 				clockDate:"",
 				clockTime:"",
 				jianceDate:"",
+				downloadShow: false,
+				currentProgress:0,
 			}
 		},
 		onLoad() {
@@ -136,6 +147,65 @@
 				jcTime = jchour + ":" + jcminute
 				this.jianceDate = jcDate + ' '+ jcTime;
 				// document.getElementById("jianceDate").innerHTML = jcDate + ' '+ jcTime;
+			},
+			testDownload(){
+				console.log("testDownload tapped");
+				const downloadTask = uni.downloadFile({
+					url: 'http://speedtest.london.linode.com/100MB-london.bin', 
+					//仅为示例，并非真实的资源
+					success: (res) => {
+						console.log(res);
+						if (res.statusCode === 200) {
+							console.log('下载成功');
+						}
+					}
+				});
+				
+				this.downloadShow = true;
+				downloadTask.onProgressUpdate((res) => {
+					this.currentProgress = res.progress;
+	
+					console.log('下载进度' + res.progress);
+					console.log('已经下载的数据长度' + res.totalBytesWritten);
+					console.log('预期需要下载的数据总长度' + res.totalBytesExpectedToWrite);
+					
+					// 满足测试条件，取消下载任务。
+					if (res.progress >= 99) {
+						console.log("in 满足测试条件");
+						downloadTask.abort();
+						// uni.hideLoading();
+						this.downloadShow = false;
+						uni.showToast({
+							title:"下载完毕",
+							icon:'success',
+							duration:2000,
+						})
+					}
+				});
+				
+				var timer = setInterval(() => {
+					let num = this.currentProgress/50;
+					this.cartoon(num)
+					if (num > 2) {
+						clearInterval(timer)
+						}
+				}, 100)
+			},
+			cartoon(num) {
+				//新建一个画布
+				const ctx = uni.createCanvasContext('runCanvas')
+
+				var yuanxin1 = 30 //圆心
+				var yuanxin2 = 30
+				var r = 25 //半径
+
+				ctx.beginPath()
+				ctx.arc(yuanxin1, yuanxin2, r, 0, num * Math.PI)
+				ctx.setStrokeStyle('#00d83c')
+				ctx.setLineWidth(4)
+				ctx.stroke()
+
+				ctx.draw()
 			},
 		}
 	}
@@ -227,5 +297,11 @@
 		border-radius: 30px;
 		text-align: center;
 		margin-top: 3px;
+	}
+	.g-progress{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background: conic-gradient(#3DB6F5 0,#3DB6F5 25%,#02B730 25%,#02B730);
 	}
 </style>

@@ -1,5 +1,6 @@
 <template>
     <view>
+		<input type="text" value="" class="input" v-model="watermark_text" placeholder="请输入需要添加的文字" maxlength="12">
 		<view style="width: 90%;margin:10px 5%;display: flex;align-items: center;">
 			<button type="primary" @tap="takePhoto">选取图片</button>
 		</view>
@@ -21,7 +22,8 @@
             return {
                 src:'',
                 w:'',
-                h:''
+                h:'',
+				watermark_text:'',
             }
         },
         methods: {
@@ -39,14 +41,16 @@
                         uni.getImageInfo({
                           src: res.tempFilePaths[0],
                           success: (ress) => {
-                            that.w = ress.width/3+'px';
-                            that.h = ress.height/3+'px';
-							
+                            // that.w = ress.width/3+'px';
+                            // that.h = ress.height/3+'px';
+							console.log(ress);
+							that.w = ress.width+'px';
+							that.h = ress.height+'px';
 							//担心尺寸重置后还没生效，故做延迟
 							setTimeout(() => {
 							
                             let ctx = uni.createCanvasContext('firstCanvas');    /** 创建画布 */
-                            ctx.setFillStyle('#00b59d')
+                            // ctx.setFillStyle('#00b59d')
 							// "blue",
 							// "white", 
 							// "red", 
@@ -57,24 +61,25 @@
 							// ctx.fillRect(0, 0, ress.width, ress.height)
 							// ctx.drawImage(res.tempFilePaths[0], 0, 0, ress.width, ress.height)
 							//将图片src放到cancas内，宽高为图片大小
-                            ctx.drawImage(res.tempFilePaths[0], 0, 0, ress.width / 3, ress.height / 3)
-                            ctx.setFontSize(18) 
+                            ctx.drawImage(res.tempFilePaths[0], 0, 0, ress.width, ress.height)
+                            // ctx.setFontSize(18) 
                             // ctx.setFillStyle('#00b59d')
                             // ctx.rotate(30 * Math.PI / 180);
-                            // let textToWidth = ress.width / 3 * 0.5; 
-                            // let textToHeight = ress.height / 3 * 0.3;
-                            // ctx.fillText('我是水印', textToWidth, textToHeight) 
+                            let textToWidth = ress.width / 3 * 0.5; 
+                            let textToHeight = ress.height / 3 * 0.3;
+                            ctx.fillText('我是水印', textToWidth, textToHeight) 
 							
 							// 设置文字水印
-							ctx.setFillStyle('white');
-							ctx.setFontSize(20);
-							ctx.fillText('打码日期:', 10, 140);
+							// ctx.setFillStyle('white');
+							// ctx.setFontSize(15);
+							// ctx.fillText(that.watermark_text, 0,0,10, ress.height/2+50);
+							// ctx.fillText('打码日期:', 10, that.h/3+50);
 							
 							//再来加个时间水印
-							var date = new Date();
-							//这里用了uview的js如果不适配需要自行修改
-							ctx.setFontSize(20);
-							ctx.fillText(date, 10, 180);
+							// var date = new Date();
+							// //这里用了uview的js如果不适配需要自行修改
+							// ctx.setFontSize(20);
+							// ctx.fillText(date, 10, that.h/3+150);
 							
                             /** 除了上面的文字水印，这里也可以加入图片水印 */
                             // ctx.drawImage('/static/guanxiaotong_head的副本.png', 0, 0, textToWidth*0.5, textToHeight*0.5)
@@ -84,7 +89,7 @@
                                       canvasId: 'firstCanvas',
                                       success: (res1) => {
                                             that.src=res1.tempFilePath;
-											that.savePhoto(res1.tempFilePath)
+											// that.savePhoto(res1.tempFilePath)
                                       }
                                     });
                                   }, 1000);
